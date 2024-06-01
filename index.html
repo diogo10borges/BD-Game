@@ -9,37 +9,40 @@
 <body>
     <div id="game-container">
         <div id="intro">
-            <h1>Welcome to the Trip Quiz!</h1>
-            <p>This quiz is about a trip that a duet has to complete until they reach their destination.</p>
-            <label for="player1">Enter name of Player 1:</label>
+            <h1>Bem Vindo ao Desafio!</h1>
+            <p>Neste quiz vocês irão fazer uma viagem onde estarão inicialmente em paises diferentes e o objetivo é descobrirem o vosso destino final.</p>
+            <label for="player1">Nome Jogador 1:</label>
             <input type="text" id="player1">
-            <label for="player2">Enter name of Player 2:</label>
+            <label for="player2">Nome Jogador 2:</label>
             <input type="text" id="player2">
-            <button onclick="startQuiz()">Start Quiz</button>
+            <button onclick="startQuiz()">Iniciar Jogo</button>
         </div>
         
         <div id="quiz" style="display:none;">
-            <div id="image-set-1" class="image-set">
-                <div>
-                    <img id="player1-image1" src="" alt="Player 1 Image 1">
+            <div id="players">
+                <div id="player1-info">
+                    <h2>Player 1</h2>
+                    <div class="image-container">
+                        <img id="player1-image1" src="" alt="Player 1 Image 1">
+                        <img id="player1-image2" src="" alt="Player 1 Image 2">
+                    </div>
                     <input type="text" id="player1-answer1" placeholder="Country">
-                </div>
-                <div>
-                    <img id="player1-image2" src="" alt="Player 1 Image 2">
                     <input type="text" id="player1-answer2" placeholder="Country">
                 </div>
-                <div>
-                    <img id="player2-image1" src="" alt="Player 2 Image 1">
+                <div id="player2-info">
+                    <h2>Player 2</h2>
+                    <div class="image-container">
+                        <img id="player2-image1" src="" alt="Player 2 Image 1">
+                        <img id="player2-image2" src="" alt="Player 2 Image 2">
+                    </div>
                     <input type="text" id="player2-answer1" placeholder="Country">
-                </div>
-                <div>
-                    <img id="player2-image2" src="" alt="Player 2 Image 2">
                     <input type="text" id="player2-answer2" placeholder="Country">
                 </div>
             </div>
             <button onclick="checkAnswers()">Submit Answers</button>
             <div id="timer">Time left: <span id="time">300</span> seconds</div>
         </div>
+
     </div>
     <script src="scripts.js"></script>
 </body>
