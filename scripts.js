@@ -128,13 +128,11 @@ function askRegionQuestion() {
 function submitRegionAnswer() {
     const regionAnswer = document.getElementById('next-answer').value.trim();
     const normalizedAnswer = normalizeAnswer(regionAnswer);
-    const normalizedAnswerWithoutHyphens = normalizeAnswerWithoutHyphens(regionAnswer);
 
     const correctRegion = "centre val de loire"; // Example region
     const normalizedCorrectRegion = normalizeAnswer(correctRegion);
-    const normalizedCorrectRegionWithoutHyphens = normalizeAnswerWithoutHyphens(correctRegion);
 
-    if (normalizedAnswer === normalizedCorrectRegion || normalizedAnswerWithoutHyphens === normalizedCorrectRegionWithoutHyphens) {
+    if (normalizedAnswer === normalizedCorrectRegion) {
         alert("Correto! Próximo e destino final.");
         document.getElementById('next-question').style.display = 'none';
         askCityQuestion();
