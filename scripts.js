@@ -82,29 +82,6 @@ function loadMoreImages() {
 //         alert("Incorreto! Tenta de novo.");
 //     }
 // }
-function askNextQuestion() {
-    document.getElementById('next-question').style.display = 'block';
-    document.getElementById('question-text').textContent = "Agora que já sabem onde estão vão ter que se encontrar num outro país. Esse país tem uma relação particular com os países onde vocês se encontram relativamente ao campeonato mundial de futebol.";
-    document.getElementById('next-answer').value = '';
-    // document.getElementById('next-answer').oninput = function() {
-    //     submitNextAnswer();
-    // };
-}
-
-function submitNextAnswer() {
-    const nextQuestionAnswer = document.getElementById('next-answer').value.trim();
-    const normalizedAnswer = normalizeAnswer(nextQuestionAnswer);
-
-    const correctAnswer = "franca";
-
-    if (normalizedAnswer === correctAnswer) {
-        alert("Correto! Próximo destino.");
-        document.getElementById('next-question').style.display = 'none';
-        askRegionQuestion();
-    } else {
-        alert("Incorreto! Tenta de novo.");
-    }
-}
 
 // function askRegionQuestion() {
 //     // Placeholder: Ask the region question and check the answer
@@ -117,30 +94,6 @@ function submitNextAnswer() {
 //     }
 // }
 
-function askRegionQuestion() {
-    document.getElementById('next-question').style.display = 'block';
-    document.getElementById('question-text').textContent = "Agora que estão em terras gaulesas vão ter que descobrir para que região administrativa se deslocar e como no ... é que está a virtude é para aí que irão.";
-    document.getElementById('next-answer').value = '';
-//     document.getElementById('next-answer').oninput = function() {
-//         submitRegionAnswer();
-//     };
-// }
-function submitRegionAnswer() {
-    const regionAnswer = document.getElementById('next-answer').value.trim();
-    const normalizedAnswer = normalizeAnswer(regionAnswer);
-
-    const correctRegion = "centre val de loire"; // Example region
-    const normalizedCorrectRegion = normalizeAnswer(correctRegion);
-
-    if (normalizedAnswer === normalizedCorrectRegion) {
-        alert("Correto! Próximo e destino final.");
-        document.getElementById('next-question').style.display = 'none';
-        askCityQuestion();
-    } else {
-        alert("Incorreto! Tenta de novo.");
-    }
-}
-
 // function askCityQuestion() {
 //     // Placeholder: Ask the final city question and check the answer
 //     const cityAnswer = prompt("O vosso destino final é uma cidade que tem como principal monumento uma catedral com nome igual a uma equipa de futebol que venceu por 10 ou mais vezes o título de campeão francês de futebol.");
@@ -150,17 +103,78 @@ function submitRegionAnswer() {
 //         alert("Incorreto! Tenta de novo.");
 //     }
 // }
+
+function appendQuestion(questionText, submitFunction) {
+    const questionContainer = document.createElement('div');
+    questionContainer.classList.add('question-container');
+    
+    const questionParagraph = document.createElement('p');
+    questionParagraph.textContent = questionText;
+    
+    const answerInput = document.createElement('input');
+    answerInput.type = 'text';
+    answerInput.classList.add('answer-input');
+    
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Verifica Resposta';
+    submitButton.onclick = submitFunction;
+
+    questionContainer.appendChild(questionParagraph);
+    questionContainer.appendChild(answerInput);
+    questionContainer.appendChild(submitButton);
+
+    document.getElementById('questions').appendChild(questionContainer);
+}
+
+function askNextQuestion() {
+    const questionText = "Agora que já sabem onde estão vão ter que se encontrar num outro país. Esse país tem uma relação particular com os países onde vocês se encontram relativamente ao campeonato mundial de futebol.";
+    appendQuestion(questionText, submitNextAnswer);
+}
+
+function submitNextAnswer() {
+    const answerInput = document.querySelector('#questions .question-container:last-child .answer-input');
+    const nextQuestionAnswer = answerInput.value.trim();
+    const normalizedAnswer = normalizeAnswer(nextQuestionAnswer);
+
+    const correctAnswer = "franca";
+
+    if (normalizedAnswer === correctAnswer) {
+        alert("Correto! Próximo destino.");
+        askRegionQuestion();
+    } else {
+        alert("Incorreto! Tenta de novo.");
+    }
+}
+
+function askRegionQuestion() {
+    const questionText = "Agora que estão em terras gaulesas vão ter que descobrir para que região administrativa se deslocar e como no ... é que está a virtude é para aí que irão.";
+    appendQuestion(questionText, submitRegionAnswer);
+}
+
+function submitRegionAnswer() {
+    const answerInput = document.querySelector('#questions .question-container:last-child .answer-input');
+    const regionAnswer = answerInput.value.trim();
+    const normalizedAnswer = normalizeAnswer(regionAnswer);
+
+    const correctRegion = "centre val de loire"; // Example region
+    const normalizedCorrectRegion = normalizeAnswer(correctRegion);
+
+    if (normalizedAnswer === normalizedCorrectRegion) {
+        alert("Correto! Próximo e destino final.");
+        askCityQuestion();
+    } else {
+        alert("Incorreto! Tenta de novo.");
+    }
+}
+
 function askCityQuestion() {
-    document.getElementById('next-question').style.display = 'block';
-    document.getElementById('question-text').textContent = "O vosso destino final é uma cidade que tem como principal monumento uma catedral com nome igual a uma equipa de futebol que venceu por 10 ou mais vezes o título de campeão francês de futebol.";
-    document.getElementById('next-answer').value = '';
-//     document.getElementById('next-answer').oninput = function() {
-//         submitCityAnswer();
-//     };
-// }
+    const questionText = "O vosso destino final é uma cidade que tem como principal monumento uma catedral com nome igual a uma equipa de futebol que venceu por 10 ou mais vezes o título de campeão francês de futebol.";
+    appendQuestion(questionText, submitCityAnswer);
+}
 
 function submitCityAnswer() {
-    const cityAnswer = document.getElementById('next-answer').value.trim();
+    const answerInput = document.querySelector('#questions .question-container:last-child .answer-input');
+    const cityAnswer = answerInput.value.trim();
     const normalizedAnswer = normalizeAnswer(cityAnswer);
 
     const correctCity = "bourges"; // Example city
