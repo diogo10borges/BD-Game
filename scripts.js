@@ -1,5 +1,5 @@
 let timer;
-let timeLeft = 10; // 5 minutes
+let timeLeft = 20; // 5 minutes
 
 function startQuiz() {
     document.getElementById('intro').style.display = 'none';
@@ -72,32 +72,102 @@ function loadMoreImages() {
     document.getElementById('player2-image2').src = 'T1-Arg2.png';
 }
 
+// function askNextQuestion() {
+//     // Placeholder: Ask the next question and check the answer
+//     const answer = prompt("Agora que já sabem onde estão vão ter que se encontrar num outro país. Esse país tem uma relação particular com os países onde vocês se encontram relativamente ao campeonato mundial de futebol.");
+//     if (normalizeAnswer(answer) === "franca") {
+//         alert("Correto! Próximo destino.");
+//         askRegionQuestion();
+//     } else {
+//         alert("Incorreto! Tenta de novo.");
+//     }
+// }
 function askNextQuestion() {
-    // Placeholder: Ask the next question and check the answer
-    const answer = prompt("Agora que já sabem onde estão vão ter que se encontrar num outro país. Esse país tem uma relação particular com os países onde vocês se encontram relativamente ao campeonato mundial de futebol.");
-    if (normalizeAnswer(answer) === "franca") {
+    document.getElementById('next-question').style.display = 'block';
+    document.getElementById('question-text').textContent = "Agora que já sabem onde estão vão ter que se encontrar num outro país. Esse país tem uma relação particular com os países onde vocês se encontram relativamente ao campeonato mundial de futebol.";
+    document.getElementById('next-answer').value = '';
+    document.getElementById('next-answer').oninput = function() {
+        submitNextAnswer();
+    };
+}
+
+function submitNextAnswer() {
+    const nextQuestionAnswer = document.getElementById('next-answer').value.trim();
+    const normalizedAnswer = normalizeAnswer(nextQuestionAnswer);
+
+    const correctAnswer = "franca";
+
+    if (normalizedAnswer === correctAnswer) {
         alert("Correto! Próximo destino.");
+        document.getElementById('next-question').style.display = 'none';
         askRegionQuestion();
     } else {
         alert("Incorreto! Tenta de novo.");
     }
 }
 
+// function askRegionQuestion() {
+//     // Placeholder: Ask the region question and check the answer
+//     const regionAnswer = prompt("Agora que estão em terras gaulesas vão ter que descobrir para que região administrativa se deslocar e como no ... é que está a virtude é para aí que irão.");
+//     if (normalizeAnswer(regionAnswer) === "centre val de loire") { // Example region
+//         alert("Correto! Próximo e destino final.");
+//         askCityQuestion();
+//     } else {
+//         alert("Incorreto! Tenta de novo.");
+//     }
+// }
+
 function askRegionQuestion() {
-    // Placeholder: Ask the region question and check the answer
-    const regionAnswer = prompt("Agora que estão em terras gaulesas vão ter que descobrir para que região administrativa se deslocar e como no ... é que está a virtude é para aí que irão.");
-    if (normalizeAnswer(regionAnswer) === "centre val de loire") { // Example region
+    document.getElementById('next-question').style.display = 'block';
+    document.getElementById('question-text').textContent = "Agora que estão em terras gaulesas vão ter que descobrir para que região administrativa se deslocar e como no ... é que está a virtude é para aí que irão.";
+    document.getElementById('next-answer').value = '';
+    document.getElementById('next-answer').oninput = function() {
+        submitRegionAnswer();
+    };
+}
+function submitRegionAnswer() {
+    const regionAnswer = document.getElementById('next-answer').value.trim();
+    const normalizedAnswer = normalizeAnswer(regionAnswer);
+    const normalizedAnswerWithoutHyphens = normalizeAnswerWithoutHyphens(regionAnswer);
+
+    const correctRegion = "centre val de loire"; // Example region
+    const normalizedCorrectRegion = normalizeAnswer(correctRegion);
+    const normalizedCorrectRegionWithoutHyphens = normalizeAnswerWithoutHyphens(correctRegion);
+
+    if (normalizedAnswer === normalizedCorrectRegion || normalizedAnswerWithoutHyphens === normalizedCorrectRegionWithoutHyphens) {
         alert("Correto! Próximo e destino final.");
+        document.getElementById('next-question').style.display = 'none';
         askCityQuestion();
     } else {
         alert("Incorreto! Tenta de novo.");
     }
 }
 
+// function askCityQuestion() {
+//     // Placeholder: Ask the final city question and check the answer
+//     const cityAnswer = prompt("O vosso destino final é uma cidade que tem como principal monumento uma catedral com nome igual a uma equipa de futebol que venceu por 10 ou mais vezes o título de campeão francês de futebol.");
+//     if (normalizeAnswer(cityAnswer) === "bourges") { // Example city
+//         alert("Parabéns! Chegaste ao destino, comprova-o ao Game Master.");
+//     } else {
+//         alert("Incorreto! Tenta de novo.");
+//     }
+// }
 function askCityQuestion() {
-    // Placeholder: Ask the final city question and check the answer
-    const cityAnswer = prompt("O vosso destino final é uma cidade que tem como principal monumento uma catedral com nome igual a uma equipa de futebol que venceu por 10 ou mais vezes o título de campeão francês de futebol.");
-    if (normalizeAnswer(cityAnswer) === "bourges") { // Example city
+    document.getElementById('next-question').style.display = 'block';
+    document.getElementById('question-text').textContent = "O vosso destino final é uma cidade que tem como principal monumento uma catedral com nome igual a uma equipa de futebol que venceu por 10 ou mais vezes o título de campeão francês de futebol.";
+    document.getElementById('next-answer').value = '';
+    document.getElementById('next-answer').oninput = function() {
+        submitCityAnswer();
+    };
+}
+
+function submitCityAnswer() {
+    const cityAnswer = document.getElementById('next-answer').value.trim();
+    const normalizedAnswer = normalizeAnswer(cityAnswer);
+
+    const correctCity = "bourges"; // Example city
+
+    if (normalizedAnswer === correctCity) {
         alert("Parabéns! Chegaste ao destino, comprova-o ao Game Master.");
     } else {
         alert("Incorreto! Tenta de novo.");
