@@ -57,6 +57,7 @@ function checkAnswers() {
 
     if (correctCount === 2) {
         alert("Acertaste nos 2 países! Avança para a próxima localização.");
+        clearInterval(timer); // Stop the timer
         // Proceed to next question
         askNextQuestion();
     }
