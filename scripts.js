@@ -1,5 +1,5 @@
 let timer;
-let timeLeft = 300; // 5 minutes
+let timeLeft = 10; // 5 minutes
 
 function startQuiz() {
     document.getElementById('intro').style.display = 'none';
@@ -64,7 +64,7 @@ function checkAnswers() {
 
 
 function loadMoreImages() {
-    timeLeft = 180; // 3 minutes
+    timeLeft = 10; // 3 minutes
     startTimer();
     // Placeholder: Load the additional images
     document.getElementById('player1-image1').src = 'T1-Cro1.png'; // Replace with actual image source
