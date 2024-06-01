@@ -15,7 +15,7 @@ function startTimer() {
         document.getElementById('time').textContent = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timer);
-            alert("Time's up! Showing more images...");
+            alert("Para ajudar vos têm aqui as imagens sem desfoque...");
             // Show more images
             loadMoreImages();
         }
@@ -46,17 +46,17 @@ function checkAnswers() {
     if (player1Answer1 === correctAnswerp1) {
         correctCount++;
     } else {
-        alert("Player 1's answer is incorrect.");
+        alert("O país do jogador 1 está incorreto.");
     }
 
     if (player2Answer1 === correctAnswerp2) {
         correctCount++;
     } else {
-        alert("Player 2's answer is incorrect.");
+        alert("O país do jogador 2 está incorreto");
     }
 
     if (correctCount === 2) {
-        alert("Both answers are correct! Now answer the following question.");
+        alert("Acertaste nos 2 países! Avança para a próxima localização.");
         // Proceed to next question
         askNextQuestion();
     }
@@ -64,8 +64,6 @@ function checkAnswers() {
 
 
 function loadMoreImages() {
-    timeLeft = 10; // 3 minutes
-    startTimer();
     // Placeholder: Load the additional images
     document.getElementById('player1-image1').src = 'T1-Cro1.png'; // Replace with actual image source
     document.getElementById('player1-image2').src = 'T1-Cro2.png';
@@ -75,32 +73,32 @@ function loadMoreImages() {
 
 function askNextQuestion() {
     // Placeholder: Ask the next question and check the answer
-    const answer = prompt("What is the country you need to answer to advance?");
-    if (answer.trim().toLowerCase() === "france") {
-        alert("Correct! Next question.");
+    const answer = prompt("Agora que já sabem onde estão vão ter que se encontrar num outro país. Esse país tem uma relação particular com os países onde vocês se encontram relativamente ao campeonato mundial de futebol.");
+    if (normalizeAnswer(answer) === "franca") {
+        alert("Correto! Próximo destino.");
         askRegionQuestion();
     } else {
-        alert("Incorrect! Try again.");
+        alert("Incorreto! Tenta de novo.");
     }
 }
 
 function askRegionQuestion() {
     // Placeholder: Ask the region question and check the answer
-    const regionAnswer = prompt("Enter a region of France to advance.");
-    if (regionAnswer.trim().toLowerCase() === "ile-de-france") { // Example region
-        alert("Correct! Final question.");
+    const regionAnswer = prompt("Agora que estão em terras gaulesas vão ter que descobrir para que região administrativa se deslocar e como no ... é que está a virtude é para aí que irão.");
+    if (normalizeAnswer(regionAnswer) === "centre-val de loire") { // Example region
+        alert("Correto! Próximo e destino final.");
         askCityQuestion();
     } else {
-        alert("Incorrect! Try again.");
+        alert("Incorreto! Tenta de novo.");
     }
 }
 
 function askCityQuestion() {
     // Placeholder: Ask the final city question and check the answer
-    const cityAnswer = prompt("Enter the name of a French city to finish the game.");
-    if (cityAnswer.trim().toLowerCase() === "paris") { // Example city
-        alert("Congratulations! You've completed the quiz.");
+    const cityAnswer = prompt("O vosso destino final é uma cidade que tem como principal monumento uma catedral com nome igual a uma equipa de futebol que venceu por 10 ou mais vezes o título de campeão francês de futebol.");
+    if (normalizeAnswer(cityAnswer) === "bourges") { // Example city
+        alert("Parabéns! Chegaste ao destino, comprova-o ao Game Master.");
     } else {
-        alert("Incorrect! Try again.");
+        alert("Incorreto! Tenta de novo.");
     }
 }
