@@ -27,18 +27,20 @@ function loadImages() {
     document.getElementById('player2-image2').src = 'T1-Cro2.png';
 }
 
+function normalizeAnswer(answer) {
+    return answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 function checkAnswers() {
     clearInterval(timer);
     // Placeholder: Check if answers are correct
-    const player1Answer1 = document.getElementById('player1-answer1').value.trim();
-    const player1Answer2 = document.getElementById('player1-answer2').value.trim();
-    const player2Answer1 = document.getElementById('player2-answer1').value.trim();
-    const player2Answer2 = document.getElementById('player2-answer2').value.trim();
+    const player1Answer1 = normalizeAnswer(document.getElementById('player1-answer1').value.trim());
+    const player2Answer1 = normalizeAnswer(document.getElementById('player2-answer1').value.trim());
 
-    const correctAnswer = "France"; // Example correct answer
+    const correctAnswerp1 = "argentina";
+    const correctAnswerp2 = "croacia";
 
-    if (player1Answer1 === correctAnswer && player1Answer2 === correctAnswer &&
-        player2Answer1 === correctAnswer && player2Answer2 === correctAnswer) {
+    if (player1Answer1 === correctAnswerp1 && player2Answer1 === correctAnswerp2) {
         alert("Correct! Now answer the following question.");
         // Proceed to next question
         askNextQuestion();
@@ -48,6 +50,7 @@ function checkAnswers() {
         loadMoreImages();
     }
 }
+
 
 function loadMoreImages() {
     timeLeft = 180; // 3 minutes
