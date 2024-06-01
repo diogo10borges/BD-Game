@@ -31,7 +31,7 @@ function loadImages() {
 }
 
 function normalizeAnswer(answer) {
-    return answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/-/g, " ");
 }
 
 function checkAnswers() {
@@ -85,7 +85,7 @@ function askNextQuestion() {
 function askRegionQuestion() {
     // Placeholder: Ask the region question and check the answer
     const regionAnswer = prompt("Agora que estão em terras gaulesas vão ter que descobrir para que região administrativa se deslocar e como no ... é que está a virtude é para aí que irão.");
-    if (normalizeAnswer(regionAnswer) === "centre-val de loire") { // Example region
+    if (normalizeAnswer(regionAnswer) === "centre val de loire") { // Example region
         alert("Correto! Próximo e destino final.");
         askCityQuestion();
     } else {
