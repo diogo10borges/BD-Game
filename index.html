@@ -19,26 +19,30 @@
         </div>
         
         <div id="quiz" style="display:none;">
-            <div id="players">
-                <div id="player1-info">
-                    <h2>Player 1</h2>
-                    <div class="image-container">
-                        <img id="player1-image1" src="" alt="Player 1 Image 1">
-                        <img id="player1-image2" src="" alt="Player 1 Image 2">
+            <div id="intro">
+                <h1>Desafio 1</h1>
+                <p>Cada um de vós encontra-se num país diferente, primeiro têm que descobrir onde cada um de vós está.</p>
+                <div id="players">
+                    <div id="player1-info">
+                        <h2>Jogador 1</h2>
+                        <div class="image-container">
+                            <img id="player1-image1" src="" alt="Player 1 Image 1">
+                            <img id="player1-image2" src="" alt="Player 1 Image 2">
+                        </div>
+                        <input type="text" id="player1-answer1" placeholder="Country">
                     </div>
-                    <input type="text" id="player1-answer1" placeholder="Country">
-                </div>
-                <div id="player2-info">
-                    <h2>Player 2</h2>
-                    <div class="image-container">
-                        <img id="player2-image1" src="" alt="Player 2 Image 1">
-                        <img id="player2-image2" src="" alt="Player 2 Image 2">
+                    <div id="player2-info">
+                        <h2>Jogador 2</h2>
+                        <div class="image-container">
+                            <img id="player2-image1" src="" alt="Player 2 Image 1">
+                            <img id="player2-image2" src="" alt="Player 2 Image 2">
+                        </div>
+                        <input type="text" id="player2-answer1" placeholder="Country">
                     </div>
-                    <input type="text" id="player2-answer1" placeholder="Country">
                 </div>
+                <button onclick="checkAnswers()">Submit Answers</button>
+                <div id="timer">Time left: <span id="time">300</span> seconds</div>
             </div>
-            <button onclick="checkAnswers()">Submit Answers</button>
-            <div id="timer">Time left: <span id="time">300</span> seconds</div>
         </div>
 
     </div>
