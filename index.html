@@ -29,7 +29,7 @@
                             <img id="player1-image1" src="" alt="Player 1 Image 1">
                             <img id="player1-image2" src="" alt="Player 1 Image 2">
                         </div>
-                        <input type="text" id="player1-answer1" placeholder="Country">
+                        <input type="text" id="player1-answer1" placeholder="País">
                     </div>
                     <div id="player2-info">
                         <h2>Jogador 2</h2>
@@ -37,14 +37,19 @@
                             <img id="player2-image1" src="" alt="Player 2 Image 1">
                             <img id="player2-image2" src="" alt="Player 2 Image 2">
                         </div>
-                        <input type="text" id="player2-answer1" placeholder="Country">
+                        <input type="text" id="player2-answer1" placeholder="País">
                     </div>
                 </div>
                 <button onclick="checkAnswers()">Submit Answers</button>
                 <div id="timer">Time left: <span id="time">300</span> seconds</div>
             </div>
+            <div id="next-question" style="display:none;">
+                <h2>Next Question</h2>
+                <p id="question-text"></p>
+                <input type="text" id="next-answer" placeholder="Your Answer">
+                <button onclick="submitNextAnswer()">Submit</button>
+            </div>
         </div>
-
     </div>
     <script src="scripts.js"></script>
 </body>
