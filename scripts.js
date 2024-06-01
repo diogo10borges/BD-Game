@@ -9,12 +9,15 @@ function startQuiz() {
 }
 
 function startTimer() {
+    clearInterval(timer);
     timer = setInterval(() => {
         timeLeft--;
         document.getElementById('time').textContent = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timer);
-            checkAnswers();
+            alert("Time's up! Showing more images...");
+            // Show more images
+            loadMoreImages();
         }
     }, 1000);
 }
@@ -32,22 +35,30 @@ function normalizeAnswer(answer) {
 }
 
 function checkAnswers() {
-    clearInterval(timer);
-    // Placeholder: Check if answers are correct
     const player1Answer1 = normalizeAnswer(document.getElementById('player1-answer1').value.trim());
     const player2Answer1 = normalizeAnswer(document.getElementById('player2-answer1').value.trim());
 
     const correctAnswerp1 = "argentina";
     const correctAnswerp2 = "croacia";
 
-    if (player1Answer1 === correctAnswerp1 && player2Answer1 === correctAnswerp2) {
-        alert("Correct! Now answer the following question.");
+    let correctCount = 0;
+
+    if (player1Answer1 === correctAnswerp1) {
+        correctCount++;
+    } else {
+        alert("Player 1's answer is incorrect.");
+    }
+
+    if (player2Answer1 === correctAnswerp2) {
+        correctCount++;
+    } else {
+        alert("Player 2's answer is incorrect.");
+    }
+
+    if (correctCount === 2) {
+        alert("Both answers are correct! Now answer the following question.");
         // Proceed to next question
         askNextQuestion();
-    } else {
-        alert("Incorrect! Showing more images...");
-        // Show more images and reduce time
-        loadMoreImages();
     }
 }
 
@@ -56,10 +67,10 @@ function loadMoreImages() {
     timeLeft = 180; // 3 minutes
     startTimer();
     // Placeholder: Load the additional images
-    document.getElementById('player1-image1').src = 'T1-Arg1.png'; // Replace with actual image source
-    document.getElementById('player1-image2').src = 'T1-Arg2.png';
-    document.getElementById('player2-image1').src = 'T1-Cro1.png';
-    document.getElementById('player2-image2').src = 'T1-Cro2.png';
+    document.getElementById('player1-image1').src = 'T1-Cro1.png'; // Replace with actual image source
+    document.getElementById('player1-image2').src = 'T1-Cro2.png';
+    document.getElementById('player2-image1').src = 'T1-Arg1.png';
+    document.getElementById('player2-image2').src = 'T1-Arg2.png';
 }
 
 function askNextQuestion() {
