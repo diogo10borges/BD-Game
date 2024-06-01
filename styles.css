@@ -13,25 +13,36 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.image-set {
+#players {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.image-set div {
-    margin: 10px;
+#player1-info,
+#player2-info {
+    flex: 1;
+    margin: 20px;
 }
 
-img {
-    max-width: 100px;
-    display: block;
-    margin: 0 auto;
+#players h2 {
+    text-align: center;
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.image-container img {
+    max-width: 45%;
+    max-height: 200px;
 }
 
 input[type="text"] {
     display: block;
-    width: 100%;
+    width: calc(100% - 20px); /* Adjusting width for better spacing */
+    margin: 0 auto;
     padding: 5px;
     margin-top: 5px;
 }
