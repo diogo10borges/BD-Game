@@ -86,9 +86,9 @@ function askNextQuestion() {
     document.getElementById('next-question').style.display = 'block';
     document.getElementById('question-text').textContent = "Agora que já sabem onde estão vão ter que se encontrar num outro país. Esse país tem uma relação particular com os países onde vocês se encontram relativamente ao campeonato mundial de futebol.";
     document.getElementById('next-answer').value = '';
-    document.getElementById('next-answer').oninput = function() {
-        submitNextAnswer();
-    };
+    // document.getElementById('next-answer').oninput = function() {
+    //     submitNextAnswer();
+    // };
 }
 
 function submitNextAnswer() {
@@ -121,10 +121,10 @@ function askRegionQuestion() {
     document.getElementById('next-question').style.display = 'block';
     document.getElementById('question-text').textContent = "Agora que estão em terras gaulesas vão ter que descobrir para que região administrativa se deslocar e como no ... é que está a virtude é para aí que irão.";
     document.getElementById('next-answer').value = '';
-    document.getElementById('next-answer').oninput = function() {
-        submitRegionAnswer();
-    };
-}
+//     document.getElementById('next-answer').oninput = function() {
+//         submitRegionAnswer();
+//     };
+// }
 function submitRegionAnswer() {
     const regionAnswer = document.getElementById('next-answer').value.trim();
     const normalizedAnswer = normalizeAnswer(regionAnswer);
@@ -154,10 +154,10 @@ function askCityQuestion() {
     document.getElementById('next-question').style.display = 'block';
     document.getElementById('question-text').textContent = "O vosso destino final é uma cidade que tem como principal monumento uma catedral com nome igual a uma equipa de futebol que venceu por 10 ou mais vezes o título de campeão francês de futebol.";
     document.getElementById('next-answer').value = '';
-    document.getElementById('next-answer').oninput = function() {
-        submitCityAnswer();
-    };
-}
+//     document.getElementById('next-answer').oninput = function() {
+//         submitCityAnswer();
+//     };
+// }
 
 function submitCityAnswer() {
     const cityAnswer = document.getElementById('next-answer').value.trim();
