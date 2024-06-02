@@ -81,6 +81,7 @@ function startTimer() {
 function displayPlayerQuestion() {
                                     
     // Display player's images
+    alert(`Image ${currentPlayer.images[0].replace('.png', '_blurred.png')}`)
     document.getElementById('player1-image1').src = currentPlayer.images[0].replace('.png', '_blurred.png');
     document.getElementById('player1-image2').src = currentPlayer.images[1].replace('.png', '_blurred.png');
     document.getElementById('player2-image1').src = currentPlayer.images[2].replace('.png', '_blurred.png');
