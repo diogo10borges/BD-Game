@@ -1,7 +1,7 @@
 let startTime;
 let playerName;
 let timer;
-let timeLeft = 20; // 5 minutes
+let timeLeft = 60*5; // 5 minutes
 
 const players = [
     {
@@ -42,7 +42,7 @@ function startQuiz() {
     // Get the selected player's ID
     const playerId = document.getElementById('player-select').value;
     playerName = document.getElementById('player-select').options[document.getElementById('player-select').selectedIndex].text;
-    alert(`playerId, ${playerId} - playerName, ${playerName}`)
+
     // Find the corresponding player object from the array
     currentPlayer = players.find(player => player.id === playerId);
     // Start the timer
