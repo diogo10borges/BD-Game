@@ -81,10 +81,10 @@ function startTimer() {
 function displayPlayerQuestion() {
                                     
     // Display player's images
-    document.getElementById('player1-image1').src = currentPlayer.images[0].replace('.jpg', '_blurred.jpg');
-    document.getElementById('player1-image2').src = currentPlayer.images[1].replace('.jpg', '_blurred.jpg');
-    document.getElementById('player2-image1').src = currentPlayer.images[2].replace('.jpg', '_blurred.jpg');
-    document.getElementById('player2-image2').src = currentPlayer.images[3].replace('.jpg', '_blurred.jpg');
+    document.getElementById('player1-image1').src = currentPlayer.images[0].replace('.png', '_blurred.png');
+    document.getElementById('player1-image2').src = currentPlayer.images[1].replace('.png', '_blurred.png');
+    document.getElementById('player2-image1').src = currentPlayer.images[2].replace('.png', '_blurred.png');
+    document.getElementById('player2-image2').src = currentPlayer.images[3].replace('.png', '_blurred.png');
 }
 
 function normalizeAnswer(answer) {
