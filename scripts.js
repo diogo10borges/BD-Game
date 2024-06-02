@@ -1,7 +1,14 @@
+let startTime;
+let playerName;
 let timer;
 let timeLeft = 20; // 5 minutes
 
 function startQuiz() {
+    // Get the selected player's ID
+    playerName = document.getElementById('player-select').value;
+    // Start the timer
+    startTime = new Date().getTime();
+    // Hide the intro and display the quiz
     document.getElementById('intro').style.display = 'none';
     document.getElementById('quiz').style.display = 'block';
     startTimer();
@@ -32,6 +39,14 @@ function loadImages() {
 
 function normalizeAnswer(answer) {
     return answer.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/-/g, " ");
+}
+
+function calculateElapsedTime(startTime) {
+    const endTime = new Date().getTime();
+    const elapsedTimeInSeconds = (endTime - startTime) / 1000;
+    const minutes = Math.floor(elapsedTimeInSeconds / 60);
+    const seconds = Math.floor(elapsedTimeInSeconds % 60);
+    return `${minutes} minutos e ${seconds} segundos`;
 }
 
 function checkAnswers() {
@@ -180,7 +195,8 @@ function submitCityAnswer() {
     const correctCity = "bourges"; // Example city
 
     if (normalizedAnswer === correctCity) {
-        alert("Parabéns! Chegaste ao destino, comprova-o ao Game Master.");
+        const elapsedTime = calculateElapsedTime(startTime);
+        alert("Parabéns, ${playerName}! Chegaste ao destinoem ${elapsedTime}. Comprova-o ao Game Master.");
     } else {
         alert("Incorreto! Tenta de novo.");
     }
