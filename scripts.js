@@ -3,16 +3,56 @@ let playerName;
 let timer;
 let timeLeft = 20; // 5 minutes
 
+const players = [
+    {
+        id: "player1",
+        question: "Agora que já sabem onde estão vão ter que se encontrar num outro país. Esse pais tem uma relação particular com os países onde vocês se encontrar relativamente ao campeonato mundial de futebol.",
+        images: ["T1-Arg1.png", "T1-Arg2.png","T1-Cro1.png", "T1-Cro2.png"],
+        correctAnswer: ["argentina", "croacia"]
+    },
+    {
+        id: "player2",
+        question: "Agora que já sabem onde estão vão ter que se encontrar num outro país. O país que têm que descobrir está relacionado com aqueles onde vocês se encontram pelo seu passado.",
+        images: ["T5-Sen1.png", "T5-Sen2.png","T5-Tun1.png", "T5-Tun2.png"],
+        correctAnswer: ["senegal", "tunisia"]
+    },
+    {
+        id: "player3",
+        question: "Agora que já sabem onde estão vão ter que se encontrar num outro país. Este país que têm que adivinhar formou em conjunto com os países onde se encontram e mais 3 outros uma importante comunidade e tem a particularidade de ser fronteira com um deles e partilhar a lingua com esse mesmo país.",
+        images: ["T3-Bel1.png", "T3-Bel2.png","T3-Hol1.png", "T3-Hol2.png"],
+        correctAnswer: ["belgica", "holanda"]
+    },
+    {
+        id: "player4",
+        question: "Agora que já sabem onde estão vão ter que se encontrar num outro país. Este país tem uma característica igual no nome com os países onde vocês se encontram, para além disso também faz fronteira com um deles.",
+        images: ["T4-It1.png", "T4-It2.png","T4-Mex1.png", "T4-Mex2.png"],
+        correctAnswer: ["italia", "mexico"]
+    },
+    {
+        id: "player5",
+        question: "Agora que já sabem onde estão vão ter que se encontrar num outro país. Este país tem a particularidade de ser ligeiramente mais pequeno que os países onde vocês estão (não incluindo os seus territórios ultramarinos).",
+        images: ["T2-Bots1.png", "T2-Bots2.png","T2-Ken1.png", "T2-Ken2.png"],
+        correctAnswer: ["botsuana", "quenia"]
+    }
+];
+
+
+
 function startQuiz() {
     // Get the selected player's ID
+    const playerId = document.getElementById('player-select').value;
     playerName = document.getElementById('player-select').value;
+    // Find the corresponding player object from the array
+    currentPlayer = players.find(player => player.id === playerId);
     // Start the timer
     startTime = new Date().getTime();
     // Hide the intro and display the quiz
     document.getElementById('intro').style.display = 'none';
     document.getElementById('quiz').style.display = 'block';
     startTimer();
-    loadImages();
+    // loadImages();
+    // Display the player's question and images
+    displayPlayerQuestion();
 }
 
 function startTimer() {
@@ -29,12 +69,21 @@ function startTimer() {
     }, 1000);
 }
 
-function loadImages() {
-    // Placeholder: Load the images dynamically
-    document.getElementById('player1-image1').src = 'T1-Arg1.png'; // Replace with actual image source
-    document.getElementById('player1-image2').src = 'T1-Arg2.png';
-    document.getElementById('player2-image1').src = 'T1-Cro1.png';
-    document.getElementById('player2-image2').src = 'T1-Cro2.png';
+// function loadImages() {
+//     // Placeholder: Load the images dynamically
+//     document.getElementById('player1-image1').src = 'T1-Arg1.png'; // Replace with actual image source
+//     document.getElementById('player1-image2').src = 'T1-Arg2.png';
+//     document.getElementById('player2-image1').src = 'T1-Cro1.png';
+//     document.getElementById('player2-image2').src = 'T1-Cro2.png';
+// }
+
+function displayPlayerQuestion() {
+                                    
+    // Display player's images
+    document.getElementById('player1-image1').src = currentPlayer.images[0];
+    document.getElementById('player1-image2').src = currentPlayer.images[1];
+    document.getElementById('player2-image1').src = currentPlayer.images[2];
+    document.getElementById('player2-image2').src = currentPlayer.images[3];
 }
 
 function normalizeAnswer(answer) {
@@ -53,18 +102,15 @@ function checkAnswers() {
     const player1Answer1 = normalizeAnswer(document.getElementById('player1-answer1').value.trim());
     const player2Answer1 = normalizeAnswer(document.getElementById('player2-answer1').value.trim());
 
-    const correctAnswerp1 = "argentina";
-    const correctAnswerp2 = "croacia";
-
     let correctCount = 0;
 
-    if (player1Answer1 === correctAnswerp1) {
+    if (player1Answer1 === currentPlayer.correctAnswer[0]) {
         correctCount++;
     } else {
         alert("O país do jogador 1 está incorreto.");
     }
 
-    if (player2Answer1 === correctAnswerp2) {
+    if (player2Answer1 === currentPlayer.correctAnswer[1]) {
         correctCount++;
     } else {
         alert("O país do jogador 2 está incorreto");
@@ -81,7 +127,7 @@ function checkAnswers() {
 
 function loadMoreImages() {
     // Placeholder: Load the additional images
-    document.getElementById('player1-image1').src = 'T1-Cro1.png'; // Replace with actual image source
+    document.getElementById('player1-image1').src = 'T1-Cro1.png';
     document.getElementById('player1-image2').src = 'T1-Cro2.png';
     document.getElementById('player2-image1').src = 'T1-Arg1.png';
     document.getElementById('player2-image2').src = 'T1-Arg2.png';
@@ -142,7 +188,7 @@ function appendQuestion(questionText, submitFunction) {
 }
 
 function askNextQuestion() {
-    const questionText = "Agora que já sabem onde estão vão ter que se encontrar num outro país. Esse país tem uma relação particular com os países onde vocês se encontram relativamente ao campeonato mundial de futebol.";
+    const questionText = currentPlayer.question;
     appendQuestion(questionText, submitNextAnswer);
 }
 
@@ -196,7 +242,7 @@ function submitCityAnswer() {
 
     if (normalizedAnswer === correctCity) {
         const elapsedTime = calculateElapsedTime(startTime);
-        alert("Parabéns, ${playerName}! Chegaste ao destinoem ${elapsedTime}. Comprova-o ao Game Master.");
+        alert(`Parabéns, ${playerName}! Chegaste ao destino em ${elapsedTime}. Comprova-o ao Game Master.`);
     } else {
         alert("Incorreto! Tenta de novo.");
     }
