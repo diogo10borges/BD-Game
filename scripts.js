@@ -81,10 +81,10 @@ function startTimer() {
 function displayPlayerQuestion() {
                                     
     // Display player's images
-    document.getElementById('player1-image1').src = currentPlayer.images[0];
-    document.getElementById('player1-image2').src = currentPlayer.images[1];
-    document.getElementById('player2-image1').src = currentPlayer.images[2];
-    document.getElementById('player2-image2').src = currentPlayer.images[3];
+    document.getElementById('player1-image1').src = currentPlayer.images[0].replace('.jpg', '_blurred.jpg');
+    document.getElementById('player1-image2').src = currentPlayer.images[1].replace('.jpg', '_blurred.jpg');
+    document.getElementById('player2-image1').src = currentPlayer.images[2].replace('.jpg', '_blurred.jpg');
+    document.getElementById('player2-image2').src = currentPlayer.images[3].replace('.jpg', '_blurred.jpg');
 }
 
 function normalizeAnswer(answer) {
@@ -128,10 +128,10 @@ function checkAnswers() {
 
 function loadMoreImages() {
     // Placeholder: Load the additional images
-    document.getElementById('player1-image1').src = 'T1-Cro1.png';
-    document.getElementById('player1-image2').src = 'T1-Cro2.png';
-    document.getElementById('player2-image1').src = 'T1-Arg1.png';
-    document.getElementById('player2-image2').src = 'T1-Arg2.png';
+    document.getElementById('player1-image1').src = currentPlayer.images[0];
+    document.getElementById('player1-image2').src = currentPlayer.images[1];
+    document.getElementById('player2-image1').src = currentPlayer.images[2];
+    document.getElementById('player2-image2').src = currentPlayer.images[3];
 }
 
 // function askNextQuestion() {
