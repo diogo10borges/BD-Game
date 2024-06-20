@@ -41,7 +41,8 @@ const players = [
 function startQuiz() {
     // Get the selected player's ID
     const playerId = document.getElementById('player-select').value;
-    playerName = document.getElementById('player-select').options[document.getElementById('player-select').selectedIndex].text;
+    // playerName = document.getElementById('player-select').options[document.getElementById('player-select').selectedIndex].text;
+    playerName = document.getElementById('player-name').value.trim();
 
     // Find the corresponding player object from the array
     currentPlayer = players.find(player => player.id === playerId);
